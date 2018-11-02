@@ -11,13 +11,17 @@ class ImageCellNode: ASCellNode {
         super.init()
         self.automaticallyManagesSubnodes = true
         self.image.backgroundColor = .gray
-        self.image.url = URL(string: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Pizigani_1367_Chart_10MB.jpg")
     }
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         self.image.style.alignSelf = .stretch
         self.image.style.preferredSize = CGSize(width: 0, height: 300)
         return ASInsetLayoutSpec(insets: .zero, child: self.image)
+    }
+
+    override func didEnterPreloadState() {
+        super.didEnterPreloadState()
+        self.image.url = URL(string: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Pizigani_1367_Chart_10MB.jpg")
     }
 }
 
